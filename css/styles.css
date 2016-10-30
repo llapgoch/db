@@ -1,0 +1,223 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Gentium Basic";
+    font-size: 16px;
+    background: grey;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 400;
+}
+
+a{
+    color: darkmagenta;
+    text-decoration: none;
+}
+
+.main-header{
+    background: rgba(142, 142, 142, 0.1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-header .nav-primary{
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.main-logo{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    color: white;
+    line-height: 1em;
+    text-shadow: 0px 0px 10px #000000;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+}
+
+.main-logo .letter:nth-child(2){
+    color: #c1c1c1;
+    margin-left: -0.4em;
+}
+
+.banner-widget{
+    background: black;
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+.banner-widget .bx-wrapper{
+    z-index: 100;
+    position: relative;
+}
+
+.banner-widget .banner-widget__items{
+    position: relative;
+    z-index: 30;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0;
+    color: white;
+    box-sizing: border-box;
+}
+
+.banner-widget .banner-widget__item{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh !important;
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+
+.banner-widget__title{
+    margin-bottom: 0;
+}
+
+.banner-widget__image{
+    opacity: 0.3;
+}
+
+.banner-widget .banner-widget__title{
+    text-shadow: 0px 0px 10px #000000;
+}
+
+.banner-widget canvas{
+    position: absolute;
+    top:0;
+}
+
+.nav-primary{
+    position: relative;
+    margin-left: 10px;
+    /*text-shadow: 0px 0px 16px white;*/
+    font-size: 16px;
+    top: -0.25em;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-primary li{
+    display: inline-block;
+}
+
+.nav-primary li a{
+    color: white;
+}
+
+.main-navigation{
+    display: flex;
+    align-items: baseline;
+    padding: 10px 10px 0px 10px;
+}
+
+.nav-secondary{
+    display: flex;
+}
+
+.nav-secondary > *{
+    display: inline-block;
+}
+
+input[type="text"], .search-input{
+    padding: 0.55em 1em;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2em;
+    border: none;
+    font-size: 0.7em;
+    color: white;
+    outline: none;
+}
+
+.icon-bar{
+    list-style: none;
+    margin: 0;
+    padding: 0 1em;
+    display: flex;
+}
+
+.icon-bar .icon-bar--item{
+    position: relative;
+    height: 100%;
+    margin: 0 0.5em;
+}
+
+.icon-bar .icon-bar--link{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.icon{
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    background-size: contain;
+}
+
+.twitter-icon{
+    background: url(../images/Twitter_bird_logo_2012.svg) no-repeat;
+    width: 1.5em;
+    height: 1.1em;
+}
+
+.github-icon{
+    background: url(../images/github.svg) no-repeat;
+    width: 1.5em;
+    height: 1.1em;
+}
+
+.icon--no-content span{
+    display: none;
+}
+
+.search-input{
+
+}
+
+@media(min-width: 800px){
+    .container{
+        max-width: 90%;
+    }
+
+    .main-header{
+        display: flex;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .nav-primary{
+        border-radius: 30px;
+    }
+
+    .nav-secondary{
+        position: relative;
+        top: -0.25em;
+    }
+
+    .main-navigation{
+        flex-grow: 1;
+    }
+
+    .nav-primary{
+        padding: 0.25em 0.5em;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-primary li{
+        margin-right: 25px;
+    }
+
+    .nav-primary li:last-child{
+        margin-right: 0;
+    }
+}
