@@ -1,0 +1,20 @@
+// =============================================
+// Breadcrumb
+// =============================================
+
+.breadcrumb {
+    
+    li:not(:last-child) {
+        margin-right: spacing(sm);
+        
+        &:after {
+            @include chevron(color(neutral, dark), 4px, right, 1px);
+            vertical-align: middle;
+        }
+    }
+    
+    a {
+        margin-right: spacing(sm);
+    }
+    
+}

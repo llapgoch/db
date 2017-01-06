@@ -1,0 +1,131 @@
+// =============================================
+// Grid
+// =============================================
+
+.grid {
+    @include grid;
+}
+
+
+// =============================================
+// Grid Gutter
+// =============================================
+
+.g-gutter-x {
+    @include grid-gutter-x;
+}
+
+
+// =============================================
+// Grid Gutter
+// =============================================
+
+.g-gutter-y {
+    @include grid-gutter-y;
+}
+
+
+// =============================================
+// Grid Gutter
+// =============================================
+
+.g-gutter {
+    @include grid-gutter-x;
+    @include grid-gutter-y;
+}
+
+
+// =============================================
+// Grid Center
+// =============================================
+
+.g-center-x {
+    @include justify-content(center);
+}
+
+
+// =============================================
+// Grid Center
+// =============================================
+
+.g-center-y {
+    @include align-items(center);
+}
+
+
+// =============================================
+// Grid Center
+// =============================================
+
+.g-center {
+    @include justify-content(center);
+    @include align-items(center);
+}
+
+
+// =============================================
+// Grid Space
+// =============================================
+
+.g-space {
+    @include justify-content(space-between);
+}
+
+
+// =============================================
+// Grid Reverse
+// =============================================
+
+.g-reverse {
+    @include flex-direction(row-reverse);
+}
+
+
+// =============================================
+// Grid Collapse
+// =============================================
+
+.g-collapse {
+    > * {
+        width: auto;
+    }
+}
+
+
+// =============================================
+// Grid Stretch
+// =============================================
+
+.g-stretch {
+    @include flex-wrap(nowrap);
+    
+    > *:first-child {
+        flex-grow: 1;
+    }
+    > *:last-child {
+        flex-shrink: 0;
+    }
+}
+
+
+// =============================================
+// Grid Cols
+// =============================================
+
+@each $screen, $value in $screens {
+    @if $screen == xs {
+        @for $i from 1 through 12 {
+            .g-col-#{$screen}-#{$i} {
+                @include grid-col($i of 12);
+            }
+        }
+    } @else {
+        @include breakpoint(screen($screen)) {
+            @for $i from 1 through 12 {
+                .g-col-#{$screen}-#{$i} {
+                    @include grid-col($i of 12);
+                }
+            }
+        }
+    }
+}

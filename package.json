@@ -1,0 +1,49 @@
+{
+  "name": "chopchop",
+  "version": "2.0.0",
+  "description": "Chop Chop is a lightweight frontend pattern primer.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "watch": "gulp; gulp watch",
+    "build": "gulp",
+    "build:production": "gulp --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:getchopchop/chopchop.git"
+  },
+  "keywords": [
+    "npm",
+    "gulp",
+    "sass",
+    "css",
+    "js",
+    "img",
+    "svg"
+  ],
+  "author": "Chop Chop https://github.com/getchopchop/chopchop/",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/getchopchop/chopchop/issues"
+  },
+  "homepage": "https://github.com/getchopchop/chopchop",
+  "devDependencies": {
+    "del": "^2.1.0",
+    "fs": "0.0.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-changed": "^1.3.0",
+    "gulp-clip-empty-files": "^0.1.1",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-svg-sprite": "^1.3.1",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.6",
+    "jshint": "^2.8.0",
+    "merge-stream": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}

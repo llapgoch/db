@@ -1,0 +1,12 @@
+// =============================================
+// Clearfix
+// =============================================
+
+.u-clearfix {
+    overflow: hidden;
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
