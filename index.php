@@ -29,6 +29,7 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" type="text/css" href="<?php echo getUrl('build/vendor/normalize.css/normalize.css'); ?>" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo getUrl('build/css/styles.css'); ?>" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Gentium+Basic|Montserrat" rel="stylesheet">
     <?php /* ?>
     <script src="<?php echo getUrl('build/vendor/element-queries/ResizeSensor.js'); ?>"></script>
     <script src="<?php echo getUrl('build/vendor/element-queries/ElementQueries.js'); ?>"></script>
