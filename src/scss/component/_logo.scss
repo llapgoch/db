@@ -5,4 +5,21 @@
 .logo {
     display: inline-block;
     font-size: 5em;
+    text-decoration: none;
+    letter-spacing: -0.2em;
+    
+    &__b {
+        color: color(neutral, light);
+    }
+    
+    &--reverse {
+        color: color(neutral, white);
+        
+        .logo__b {
+            color: color(neutral, light);
+        }
+    }
+    
+    
+
 }
