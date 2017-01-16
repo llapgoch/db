@@ -39,7 +39,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo getUrl('build/css/chopchop-ui.css'); ?>" media="screen" />
     <?php endif; ?>
 </head>
-<body>
+<body class="u-fill-neutral-black">
 
     <?php if(!isset($_GET['preview'])) : ?>
         <header class="cc-header">

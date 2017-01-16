@@ -85,7 +85,8 @@
 // Grid Collapse
 // =============================================
 
-.g-collapse {
+.g-collapse,
+%g-collapse {
     > * {
         width: auto;
     }
@@ -96,14 +97,33 @@
 // Grid Stretch
 // =============================================
 
-.g-stretch {
+.g-stretch,
+%g-stretch {
     @include flex-wrap(nowrap);
+    @extend %g-collapse;
+}
+
+.g-stretch-first,
+%g-stretch-first {
+    @extend %g-stretch;
     
     > *:first-child {
         flex-grow: 1;
     }
     > *:last-child {
         flex-shrink: 0;
+    }
+}
+
+.g-stretch-last,
+%g-stretch-last {
+    @extend %g-stretch;
+    
+    > *:first-child {
+        flex-shrink: 0;
+    }
+    > *:last-child {
+        flex-grow: 1;
     }
 }
 
