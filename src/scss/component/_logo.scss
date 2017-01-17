@@ -6,10 +6,11 @@
     display: inline-block;
     white-space: nowrap;
     font-size: 5em;
+    line-height: 1;
     text-decoration: none;
-    letter-spacing: -0.2em;
     
     &__b {
+        margin-left: -0.4em;
         color: color(neutral, light);
     }
     

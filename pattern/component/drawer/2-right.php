@@ -13,6 +13,10 @@ Description: The right drawer is hidden off screen by default. <a href="#" data-
         </div>
         
         
+        <div id="drawer-search" class="u-toggle" data-cc-cascade="drawer-right" data-cc-group="drawer-right-contents">
+            Stick yer search in here lad
+        </div>
+        
         <div id="drawer-right-1" class="u-toggle" data-cc-cascade="drawer-right" data-cc-group="drawer-right-contents">
             <div class="card">
                 <div class="card__header">
