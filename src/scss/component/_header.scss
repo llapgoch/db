@@ -4,7 +4,9 @@
 
 .header {}
 
-.header__body {
+.header__main,
+.header__body,
+.header__secondary-nav {
     @include breakpoint(screen(sm)) {
         @include align-items(baseline);
     }

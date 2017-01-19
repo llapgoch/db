@@ -67,7 +67,7 @@
 
 .nav--primary {
     @include justify-content(center);
-    border-radius: $border-radius;
+    //border-radius: $border-radius;
     a {
         color: color(neutral, white);
     }

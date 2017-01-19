@@ -23,12 +23,13 @@ label {
 input,
 textarea,
 select[multiple=multiple] {
-    background-color: color(neutral, white);
-    border: 1px solid color(neutral, dark);
-    border-radius: 0;
+    background-color: color(neutral, black);
+    color: color(neutral, white);
+    border: 1px solid color(neutral, black);
+    border-radius: $border-radius;
     padding: spacing(xs) spacing(sm);
     width: 100%;
-
+    
     &:focus {
         border-color: color(neutral, black);
         outline: none;
