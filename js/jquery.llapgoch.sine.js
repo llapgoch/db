@@ -6,16 +6,20 @@ jQuery.widget('llapgoch.sinewave', {
         circleClass: 'circle',
         amount: 50,
         updateInterval: 5,
+        colorUpdateInterval: 500,
+        colorUpdateSteps: 100,
         moveAmount: 0.004,
         angleOffset: 0,
         circleDivisor: 1,
-        circleColor: 'red',
-        numberOfTrails: 1,
+        // Colours have to be in HEX format
+        circleColor: '#FF0000',
+        numberOfTrails: 0,
         blur: 0,
         alpha: 1,
         clearOnUpdate: true,
         autoStart: true,
-        
+        gradient: false,
+
         updateMethod: function (a, angleInterval) {
             return Math.sin((angleInterval * (Math.PI / 180))) * a;
         },
@@ -33,6 +37,7 @@ jQuery.widget('llapgoch.sinewave', {
     },
 
     containerCircles: null,
+    hexLookups: {},
     updateId: null,
     sineCount: 0,
     points: null,
@@ -41,6 +46,11 @@ jQuery.widget('llapgoch.sinewave', {
     initComplete: false,
     canvas: null,
     ctx: null,
+
+    colorTargetComponents: {},
+    colorUpdateId: null,
+
+
     compositeModes:[
         'source',
         'destination',
@@ -106,16 +116,67 @@ jQuery.widget('llapgoch.sinewave', {
             }
         });
     },
-    
+
+    stopFadingCircleColor: function(){
+        if(this.colorUpdateId){
+            window.clearTimeout(this.colorUpdateId);
+        }
+    },
+
+    fadeCircleColor: function(color){
+        var colorParts = this._hexToRGB(color);
+        var currentParts = this._hexToRGB(this.options.circleColor);
+        var self = this;
+
+        console.log(this.options.circleColor);
+        console.log(currentParts);
+
+        console.log(self._numberToHex(currentParts.r));
+
+        if(!colorParts || !currentParts){
+            throw 'Color fader not passed HEX color';
+        }
+
+        this.stopFadingCircleColor();
+
+        var stepData = {
+            'r': (colorParts.r - currentParts.r) / this.options.colorUpdateSteps,
+            'g': (colorParts.g - currentParts.g) / this.options.colorUpdateSteps,
+            'b': (colorParts.b - currentParts.b) / this.options.colorUpdateSteps
+        }
+
+
+
+        this.colorUpdateId = window.setInterval(function(){
+            currentParts.r += stepData.r;
+            currentParts.g += stepData.g;
+            currentParts.b += stepData.b;
+
+            var col = "#" + self._numberToHex(currentParts.r) +
+                + self._numberToHex(currentParts.g) + self._numberToHex(currentParts.b);
+
+            // console.log(col);
+
+            self.options.circleColor = col;
+
+        }, this.options.colorUpdateInterval);
+
+    },
+
+    _numberToHex: function(num){
+        num = Math.max(Math.min(255, parseInt(num, 10)), 0);
+        return ("0" + ((parseInt(num, 10)).toString(16))).slice(-2)
+    },
+
     getRandomCompositeMode: function(){
         var main = Math.round(Math.random() * this.compositeModes.length);
         var mode = this.compositeModes[main];
-        
+
         if(this.compositeSubModes[main]){
             var sub = Math.round(Math.random() * this.compositeSubModes[main]);
             return main + "-" + this.compositeSubModes[main][sub];
         }
-        
+
         return mode;
     },
 
@@ -125,6 +186,10 @@ jQuery.widget('llapgoch.sinewave', {
 
     disable: function(){
         this._stop();
+    },
+
+    getCanvas: function(){
+        return this.canvas;
     },
 
     _start: function(){
@@ -157,17 +222,15 @@ jQuery.widget('llapgoch.sinewave', {
     _update: function(){
         var self = this;
         var cRadius = this.options.circleDiameter / 2;
-        var midPointX = (this.options.stageSize / 2) - cRadius;
-        var midPointY = (this.options.stageSize / 2) - cRadius;
+        var midPoint = (this.options.stageSize / 2) - cRadius
         var xPos = (self.options.stageSize / 2) - cRadius;
-        var yPos = (self.options.stageSize / 2) - cRadius;
 
         var angleInterval = 360 / this.options.amount / this.options.circleDivisor;
         var angle = this.startAngle;
 
         var mid = {
-            x: midPointX,
-            y: midPointY
+            x: midPoint,
+            y: midPoint
         };
 
         var zero = {
@@ -176,25 +239,25 @@ jQuery.widget('llapgoch.sinewave', {
         };
 
         if(this.options.clearOnUpdate){
-             this.ctx.clearRect(0, 0, this.options.stageSize, this.options.stageSize);
+            this.ctx.clearRect(0, 0, this.options.stageSize, this.options.stageSize);
         }
-        
+
         for(var i = 0; i <= this.options.amount; i++){
 
             var offset = self.options.updateMethod(i + 1, angleInterval);
 
             offset = isNaN(offset) ? 0 : offset;
 
-            var sinPos = midPointY + (Math.sin(self.sineCount + offset) * midPointY),
+            var sinPos = midPoint + (Math.sin(self.sineCount + offset) * midPoint),
                 yPos = sinPos;
 
-            var cosPos = midPointX + (Math.cos(self.sineCount + offset) * midPointX);
-
             var rotated = self._rotatePoint({
-                'x': yPos ,
+                'x': xPos ,
                 'y': yPos
             }, mid, angle);
 
+            rotated.x += cRadius;
+            rotated.y += cRadius;
 
             rotated.diameter = this.options.circleDiameter;
             rotated.color = this.options.circleColor;
@@ -220,20 +283,60 @@ jQuery.widget('llapgoch.sinewave', {
         }
     },
 
-    _drawPoint: function(options){
+    _hexToRGB: function hexToRgb(hex) {
+        if(this.hexLookups[hex]){
+            return this.hexLookups[hex];
+        }
 
-         // this.ctx.fillStyle = options.color;
-        // this.ctx.beginPath();
-         this.ctx.globalAlpha = options.alpha;
+        console.log(hex);
 
-        gradient = this.ctx.createRadialGradient(options.x  , options.y , options.diameter/2, options.x, options.y ,0);
-       // this.ctx.arc(options.x, options.y, options.diameter, 0, 2 * Math.PI, false);
-        //this.ctx.fill();
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
-        gradient.addColorStop(0,"rgba(1,1,1,0)");
-        gradient.addColorStop(1, options.color);
-        this.ctx.fillStyle = gradient;
-        this.ctx.fillRect(options.x - (options.diameter / 2), options.y - (options.diameter / 2), options.diameter, options.diameter);
+        if(result){
+            var rgb = {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            };
+
+            // Cache the result
+            this.hexLookups[hex] = rgb;
+            return rgb;
+        }
+    },
+
+    _RGBToHex: function(){
+        rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+
+        return (rgb && rgb.length === 4) ? "#" +
+            ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+            ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+            ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+
+    },
+
+    _drawPoint: function(options) {
+        if (this.options.gradient){
+            var color = this._hexToRGB(options.color);
+
+            if (!color || !color.r) {
+                throw "No valid HEX color provided";
+                return;
+            }
+
+            var gradient = this.ctx.createRadialGradient(options.x, options.y, options.diameter/2, options.x, options.y, 0);
+            gradient.addColorStop(0, "rgba(" + color.r + "," + color.g + "," + color.b + ",0)");
+            gradient.addColorStop(1, "rgba(" + color.r + "," + color.g + "," + color.b + "," + this.options.alpha + ")");
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(options.x - (options.diameter / 2), options.y - (options.diameter / 2), options.diameter, options.diameter);
+        }else{
+            this.ctx.fillStyle = options.color;
+            this.ctx.beginPath();
+            this.ctx.globalAlpha = options.alpha;
+            this.ctx.arc(options.x, options.y, options.diameter / 2, 0, 2 * Math.PI, false);
+            this.ctx.fill();
+        }
+
     },
 
     _updatePoints: function(points, newPoint, pointNumber){

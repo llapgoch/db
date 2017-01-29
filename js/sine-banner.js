@@ -1,17 +1,30 @@
 ;(function($){
-    var FALLBACK_COLOR = "#fc6500";
+    var FALLBACK_COLOR = "#3c3c3c";//"#e85d00";
+    var diameter;
 
     $(document).on('ready.sinebanner', function(){
-        $('.banner-widget').sinewave({
-            circleDiameter: 210,
-            amount: 50,
+        var $bannerWidgets = $('.banner-widget');
+        var stageSize = Math.max($(window).width(), $bannerWidgets.height());
+        var widgetItemSelector = '.banner-widget--under-header .banner-widget__item';
+        // The CSS blur on the canvas element is far too slow on Firefox / other browsers
+        var optimisedMode = isOptimisedMode();
+
+        diameter = (stageSize / 5) * (optimisedMode ? 2 : 1);
+
+        stageSize += (diameter * 2);
+
+
+        $bannerWidgets.sinewave({
+            circleDiameter: diameter,
+            amount: Math.ceil(stageSize / 30) * (optimisedMode ? 0.25 : 1),
             angleOffset: 0.1,
             moveAmount: 0.004,
-            blur: 40,
-            updateInterval: 40,
-            stageSize: Math.max($(window).width(), $('.banner-widget').height()),
-            alpha: 1,
+            blur: optimisedMode ? 0 : 40,
+            updateInterval: 60,
+            stageSize: stageSize,
+            alpha: optimisedMode ? 0.4 : 0.75,
             circleColor: FALLBACK_COLOR,
+            gradient: true,
 
             updateMethod: function(a, angleInterval){
                 return Math.sin(Math.log(a * a) / Math.cos(a) * Math.E);
@@ -23,11 +36,22 @@
             // }
         });
 
+        $bannerWidgets.each(function(){
+            $($(this).data('llapgochSinewave').getCanvas()).css({
+                'marginLeft': -diameter,
+                'marginTop': -diameter
+            });
+        });
+
         function updateBannerItems(){
-            $('.banner-widget--under-header .banner-widget__item').css('paddingTop', $('.main-header').height() + 20);
+            $(widgetItemSelector).css('paddingTop', $('.main-header').height() + 20);
+        }
+
+        function isOptimisedMode(){
+            return window.navigator.userAgent.indexOf('Firefox') != -1;
         }
         
-        $('.banner-widget--under-header .banner-widget__items').bxSlider({
+        $('.banner-widget__items').bxSlider({
             auto: true,
             pause: 10000,
             onSliderLoad: function(){
@@ -35,7 +59,7 @@
             },
             onSlideBefore: function($item){
                 var color = $item.data('sine-color') ? $item.data('sine-color') : FALLBACK_COLOR;
-                $(".banner-widget").data('llapgochSinewave').option("circleColor", color);
+             //   $(".banner-widget").data('llapgochSinewave').option("circleColor", color);
             }
         });
     });
