@@ -3,7 +3,7 @@
 <head>
     <title>TEST</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css?family=Arvo:400,400i,700,700i|Bree+Serif|Gentium+Basic|Montserrat|" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -52,21 +52,21 @@
 </div>
 
 <article>
-    <h1 class="h1">This is a heading</h1>
+    <h1 class="h1">Fix Logging In on Old Magento 1 Installs</h1>
     <div class="article__content">
-        <p>Lorem ipsum dolor sit amet <a href="#">Link, isn't it?</a>, consectetur adipiscing elit. Suspendisse at diam augue. Vestibulum quis malesuada ligula. Suspendisse potenti. Vestibulum enim sapien, tincidunt quis pellentesque ut, euismod quis turpis. Ut imperdiet viverra elementum. Nullam porta elementum nisi, congue euismod lectus vestibulum eu. Sed consequat blandit nibh, a congue nibh aliquam a.</p>
+        <p>On certain Magento instance installs, a valid customer login will seem to fail and redirect to the login page. We’ve seen this on plenty of Magento 1.6s thus far, however newer versions may also be affected.
 
-        <p>Sed nec ex vel justo varius scelerisque. Suspendisse a lectus vitae mauris ultrices vehicula. Aliquam convallis enim et ligula dictum aliquam. Nunc efficitur felis malesuada nisi laoreet, at sagittis massa varius. Proin purus tellus, pellentesque in venenatis dictum, suscipit eu magna. Donec in malesuada ante, in dictum purus. Ut hendrerit velit vitae ante posuere, at aliquam sapien aliquam. Curabitur at diam at odio ultrices rutrum vel at tortor. Vivamus pharetra ex enim, ac malesuada leo sagittis vitae. Donec mollis faucibus nunc, vel efficitur tortor feugiat at.</p>
+</p>
+
+        <p>The problem lies in the login method of the <strong>Mage_Customer_Model_Session</strong> class. The fix, in this instance is to remove the renewSession call within that method:</p>
 
         <p>Integer venenatis turpis sem, eleifend pharetra nibh luctus vel. Vivamus interdum eu lacus eu sodales. Morbi interdum purus non porttitor ultricies. Vestibulum feugiat dolor vel erat varius, sit amet tempus mauris suscipit. Nulla hendrerit arcu vitae metus porttitor, in interdum diam viverra. Aliquam sodales leo ac malesuada consectetur. Aenean nec ligula eget libero commodo elementum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in elit rhoncus, feugiat ipsum ac, laoreet magna. Sed at augue ac metus tincidunt tempus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <h2 class="h2">Go get it, lads</h2>
+        <p>This has been rolled into a module here: <a href="https://github.com/llapgoch/fix-old-magento-login">https://github.com/llapgoch/fix-old-magento-login</a></p>
 
-        <p>Vestibulum et accumsan velit. Mauris nec tristique lectus. Maecenas dignissim ut leo eu porta. Duis pellentesque dapibus quam quis efficitur. Sed placerat efficitur justo. Sed nulla ipsum, imperdiet non elit vel, ullamcorper interdum ipsum. Nulla ut tortor bibendum, eleifend lacus ut, ultricies magna. Morbi tincidunt blandit lorem id tempus. Nulla eu interdum neque. Duis volutpat justo felis, ultrices eleifend lectus efficitur luctus. Aliquam volutpat et ex at rutrum. Nam ipsum urna, tristique at augue vel, lobortis egestas dolor. Suspendisse finibus sagittis arcu, ac fringilla lectus ultrices sit amet. Sed cursus consectetur laoreet.</p>
-
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi vehicula maximus sem, finibus sodales libero lobortis nec. Duis nec pharetra velit, ut varius ex. Proin tempor vestibulum tempus. Nunc in gravida risus, non convallis ligula. Duis a purus sed sem dapibus ornare. Donec posuere congue congue. Mauris quis orci tempus, consequat nulla ut, mollis libero. Aenean erat velit, fringilla porttitor magna et, luctus interdum velit. Nulla nec tincidunt nunc. Etiam quam est, finibus sit amet eleifend ut, consectetur vitae ipsum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at diam augue. Vestibulum quis malesuada ligula. Suspendisse potenti. Vestibulum enim sapien, tincidunt quis pellentesque ut, euismod quis turpis. Ut imperdiet viverra elementum. Nullam porta elementum nisi, congue euismod lectus vestibulum eu. Sed consequat blandit nibh, a congue nibh aliquam a.</p>
 
         <p>Sed nec ex vel justo varius scelerisque. Suspendisse a lectus vitae mauris ultrices vehicula. Aliquam convallis enim et ligula dictum aliquam. Nunc efficitur felis malesuada nisi laoreet, at sagittis massa varius. Proin purus tellus, pellentesque in venenatis dictum, suscipit eu magna. Donec in malesuada ante, in dictum purus. Ut hendrerit velit vitae ante posuere, at aliquam sapien aliquam. Curabitur at diam at odio ultrices rutrum vel at tortor. Vivamus pharetra ex enim, ac malesuada leo sagittis vitae. Donec mollis faucibus nunc, vel efficitur tortor feugiat at.</p>
-        <h2 class="h2">Sub heading, lad</h2>
+
         <p>Integer venenatis turpis sem, eleifend pharetra nibh luctus vel. Vivamus interdum eu lacus eu sodales. Morbi interdum purus non porttitor ultricies. Vestibulum feugiat dolor vel erat varius, sit amet tempus mauris suscipit. Nulla hendrerit arcu vitae metus porttitor, in interdum diam viverra. Aliquam sodales leo ac malesuada consectetur. Aenean nec ligula eget libero commodo elementum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in elit rhoncus, feugiat ipsum ac, laoreet magna. Sed at augue ac metus tincidunt tempus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
         <p>Vestibulum et accumsan velit. Mauris nec tristique lectus. Maecenas dignissim ut leo eu porta. Duis pellentesque dapibus quam quis efficitur. Sed placerat efficitur justo. Sed nulla ipsum, imperdiet non elit vel, ullamcorper interdum ipsum. Nulla ut tortor bibendum, eleifend lacus ut, ultricies magna. Morbi tincidunt blandit lorem id tempus. Nulla eu interdum neque. Duis volutpat justo felis, ultrices eleifend lectus efficitur luctus. Aliquam volutpat et ex at rutrum. Nam ipsum urna, tristique at augue vel, lobortis egestas dolor. Suspendisse finibus sagittis arcu, ac fringilla lectus ultrices sit amet. Sed cursus consectetur laoreet.</p>
