@@ -15,8 +15,9 @@ a{
     text-decoration: none;
 }
 
+
 .main-header{
-    background: rgba(142, 142, 142, 0.2);
+    background: rgba(142, 142, 142, 0.14);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -49,8 +50,16 @@ a{
 .banner-widget{
     position: absolute;
     z-index: 1;
-    height: 100vh;
+    height: 300vh;
     top: 0;
+    width: 98vw;
+    overflow: hidden;
+    box-sizing: border-box;
+
+}
+
+.banner-widget canvas {
+    pointer-events: none;
 }
 
 .banner-widget .bx-wrapper{
@@ -255,9 +264,9 @@ a:hover{
 }
 
 article{
-    z-index: 300;
-    position: relative;
-    color: #d7d7d7;
+    /*z-index: 300;*/
+    /*position: relative;*/
+    color: #ebebeb;
     margin: 20px auto;
     font-weight: 100;
     letter-spacing: 1px;
