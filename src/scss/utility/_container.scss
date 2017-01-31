@@ -1,0 +1,15 @@
+// =============================================
+// Container
+// =============================================
+
+[class*="u-container"] {
+    margin-left: auto;
+    margin-right: auto;
+    width: 96%;
+}
+
+@each $key, $value in $containers {
+    .u-container-#{$key} {
+        max-width: $value;
+    }
+}

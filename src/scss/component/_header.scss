@@ -1,0 +1,20 @@
+// =============================================
+// Header
+// =============================================
+
+.header {}
+
+.header__main,
+.header__body,
+.header__secondary-nav {
+    @include breakpoint(screen(sm)) {
+        @include align-items(baseline);
+    }
+}
+//
+//.header__logo,
+//.header__main {
+//    @include breakpoint(screen(md)) {
+//        @include grid-col(6 of 12);
+//    }
+//}

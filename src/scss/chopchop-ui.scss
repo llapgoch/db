@@ -1,0 +1,344 @@
+@import "var";
+@import "helper/function";
+@import "helper/flex";
+@import "helper/breakpoint";
+@import "helper/shape";
+@import "helper/ellipsis";
+
+
+// =============================================
+// Header
+// =============================================
+
+.cc-header {
+    position: fixed;
+    top: 100%;
+    transform: translateY(-100%);
+    left: 0;
+    right: 0;
+    z-index: 999;
+    font-size: 12px;
+    border-bottom: 4px solid color(neutral,darkest);
+    @include flex;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        @include flex;
+        width: 100%;
+    }
+
+    li {
+        list-style: none;
+        color: color(neutral, white);
+
+        > * {
+            display: inline-block;
+            padding: 6px 12px;
+        }
+    }
+
+    a {
+        color: color(neutral, white);
+        background-color: color(neutral,darkest);
+        text-decoration: none;
+
+        &.is-active {
+            background-color: #EFEDED;
+            color: color(neutral,darkest);
+        }
+    }
+
+    border-bottom-color: #FFE800;
+
+    @include breakpoint(screen(sm) screen(sm, max)) {
+        border-bottom-color: #E800E8;
+    }
+    @include breakpoint(screen(md) screen(md, max)) {
+        border-bottom-color: #70F800;
+    }
+    @include breakpoint(screen(lg) screen(lg, max)) {
+        border-bottom-color: #00B1F5;
+    }
+    @include breakpoint(screen(xl)) {
+        border-bottom-color: #FF2C00;
+    }
+}
+
+
+// =============================================
+// Breakpoint bar
+// =============================================
+
+.cc-readout {
+    margin-left: auto;
+
+    span {
+        background-color: #FFE800;
+        color: color(neutral,darkest);
+
+        @include breakpoint(screen(sm) screen(sm, max)) {
+            background-color: #E800E8;
+            color: color(neutral, white);
+        }
+        @include breakpoint(screen(md) screen(md, max)) {
+            background-color: #70F800;
+            color: color(neutral,darkest);
+        }
+        @include breakpoint(screen(lg) screen(lg, max)) {
+            background-color: #00B1F5;
+            color: color(neutral, white);
+        }
+        @include breakpoint(screen(xl)) {
+            background-color: #FF2C00;
+            color: color(neutral, white);
+        }
+    }
+}
+.cc-readout span:after {
+    content: "xs max: #{screen(xs, max)}";
+
+    @include breakpoint(screen(xs)) {
+        content: "xs: #{screen(sm)}";
+    }
+
+    @include breakpoint(screen(sm)) {
+        content: "sm: #{screen(sm)}";
+    }
+    @include breakpoint(screen(md)) {
+        content: "md: #{screen(md)}";
+    }
+    @include breakpoint(screen(lg)) {
+        content: "lg: #{screen(lg)}";
+    }
+    @include breakpoint(screen(xl)) {
+        content: "xl: #{screen(xl)}";
+    }
+}
+
+
+// =============================================
+// Site nav
+// =============================================
+
+.cc-nav {
+    position: fixed;
+    overflow-y: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    left: -100%;
+    z-index: 998;
+    background-color: color(neutral,darkest);
+    padding: 20px 10px;
+    padding-bottom: 46px;
+    color: color(neutral, lighter);
+
+    &.is-active {
+        left: 0;
+    }
+
+    ol {
+        margin: 5px 0 25px 10px;
+        padding: 0;
+        font-weight: bold;
+        font-size: 16px;
+        list-style: none;
+        counter-reset: section;
+
+        li::before {
+            counter-increment: section;
+            content: counters(section,".") ". ";
+            font-size: $font-size-sm;
+            color: color(neutral, dark);
+        }
+
+        ol {
+            margin-left: 0;
+            margin-top: 7px;
+            font-weight: normal;
+            font-size: 14px;
+        }
+    }
+
+    a {
+        color: color(neutral, lighter);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+// =============================================
+// Site wrapper
+// =============================================
+
+.cc-section {
+    border: 5px solid color(neutral, lighter);
+    border-top: 0;
+    background-color: color(neutral, white);
+}
+
+.cc-demo {
+    padding: 20px;
+}
+
+
+// =============================================
+// Title container
+// =============================================
+
+.cc-title-container {
+}
+
+
+// =============================================
+// Title
+// =============================================
+
+.cc-title {
+    background-color: color(neutral, lighter);
+    @include flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    padding: 10px 5px;
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        display: inline-block;
+        list-style: none;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    code {
+        font-size: 12px;
+        font-weight: normal;
+    }
+}
+
+
+// =============================================
+// Description
+// =============================================
+
+.cc-title-desc {
+    padding: 20px 20px 0;
+    border-left: 5px solid color(neutral, lighter);
+    border-right: 5px solid color(neutral, lighter);
+    border-top: 0;
+
+    > *:last-child {
+        margin-bottom: 0;
+        border-bottom: 2px solid color(neutral, lighter);
+        padding-bottom: 20px;
+    }
+}
+
+// =============================================
+// Move content across when nav active
+// =============================================
+
+.has-cc-nav-active .cc-main-content {
+    margin-left: 200px;
+    overflow: hidden;
+}
+
+
+// =============================================
+// Shape demos
+// =============================================
+
+.cc-shape-circle {
+    @include circle;
+}
+
+.cc-shape-square {
+    @include square;
+}
+
+.cc-shape-triangle {
+    @include triangle;
+}
+
+.cc-shape-chevron {
+    @include chevron;
+}
+
+.cc-shape-minus {
+    @include minus;
+}
+
+.cc-shape-plus {
+    @include plus;
+}
+
+.cc-shape-cross {
+    @include cross;
+}
+
+.cc-shape-tick {
+    @include tick;
+}
+
+.cc-shape-hamburger {
+    @include hamburger;
+}
+
+.cc-shape-ring {
+    @include ring;
+}
+
+
+// =============================================
+// Ellipsis demos
+// =============================================
+
+.cc-ellipsis {
+    @include ellipsis;
+    display: block;
+}
+
+
+// =============================================
+// Overlay override
+// =============================================
+
+//.cc-overlay .overlay {
+//    height: 50vh;
+//    display: block;
+//    position: static;
+//}
+
+
+// =============================================
+// Code
+// =============================================
+
+.cc-code {
+    margin: 0 !important;
+    display: block;
+    max-height: 20em;
+    overflow: scroll;
+    background-color: color(neutral, lighter) !important;
+}
+
+
+// =============================================
+// Pattern
+// =============================================
+
+.cc-pattern {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}

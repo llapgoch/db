@@ -1,0 +1,19 @@
+// =============================================
+// Image Responsive
+// =============================================
+
+.u-img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+figure {
+    margin: 0;
+    margin-bottom: spacing(lg);
+
+    img {
+        @extend .u-img-responsive;
+    }
+}

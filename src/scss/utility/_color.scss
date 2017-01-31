@@ -1,0 +1,36 @@
+// =============================================
+// Fill
+// =============================================
+
+@each $color-key, $color-value in $colors {
+    @each $tone-key, $tone-value in $color-value {
+        @if $tone-key == base {
+            .u-fill-#{$color-key} {
+                background-color: $tone-value !important;
+            }
+        } @else {
+            .u-fill-#{$color-key}-#{$tone-key} {
+                background-color: $tone-value !important;
+            }
+        }
+    }
+}
+
+
+// =============================================
+// Text
+// =============================================
+
+@each $color-key, $color-value in $colors {
+    @each $tone-key, $tone-value in $color-value {
+        @if $tone-key == base {
+            .u-text-#{$color-key} {
+                color: $tone-value !important;
+            }
+        } @else {
+            .u-text-#{$color-key}-#{$tone-key} {
+                color: $tone-value !important;
+            }
+        }
+    }
+}

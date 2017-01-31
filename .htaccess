@@ -1,0 +1,7 @@
+Options -Multiviews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^(.*)$ index.php [PT,L]
