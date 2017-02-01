@@ -1,5 +1,5 @@
 ;(function($){
-    var FALLBACK_COLOR = "#e85d00";
+    var FALLBACK_COLOR = "#d3d3d3"; //"#e85d00";
     var diameter;
 
     $(document).on('ready.sinebanner', function(){
@@ -22,7 +22,7 @@
             blur: optimisedMode ? 0 : 40,
             updateInterval: 60,
             stageSize: stageSize,
-            alpha: optimisedMode ? 0.05 : 0.1,
+            alpha: optimisedMode ? 0.05 : 0.11,
             circleColor: FALLBACK_COLOR,
             gradient: true,
 
