@@ -4,7 +4,7 @@
 
     $(document).on('ready.sinebanner', function(){
         var $bannerWidgets = $('.banner-widget');
-        var stageSize = Math.max($(window).width(), $bannerWidgets.height());
+        var stageSize = Math.max($(window).width(), $bannerWidgets.height()/2);
         var widgetItemSelector = '.banner-widget--under-header .banner-widget__item';
         // The CSS blur on the canvas element is far too slow on Firefox / other browsers
         var optimisedMode = isOptimisedMode();
