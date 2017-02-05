@@ -27,6 +27,27 @@
     width: spacing(lg);
 }
 
+.icon--xl {
+    height: spacing(xl);
+    width: spacing(xl);
+}
+
+.icon--header {
+    height: 1.3em;
+    width: 1.3em;
+}
+
+.icon--twitter {
+    fill: color(social, twitter);
+}
+
+.icon--github {
+    fill: color(social, github);
+}
+
+.icon--search {
+    fill: color(neutral, light);
+}
 
 // =============================================
 // Icons payment

@@ -41,15 +41,22 @@
 
 @mixin nav--space {
     &:not(.nav--inline) > * {
-        margin-bottom: spacing(sm);
+        margin-bottom: spacing(lg);
     }
 
     &.nav--inline > * {
-        margin-right: spacing(sm);
+        margin-right: spacing(lg);
 
         &:last-child {
             margin-right: 0;
         }
+    }
+}
+
+@mixin nav--space-around {
+    &.nav--inline > * {
+        margin-left: spacing(lg) / 2;
+        margin-right: spacing(lg) / 2;
     }
 }
 

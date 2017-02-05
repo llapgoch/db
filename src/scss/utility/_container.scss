@@ -6,6 +6,10 @@
     margin-left: auto;
     margin-right: auto;
     width: 96%;
+
+    @include breakpoint(screen(md)) {
+        width: 90%;
+    }
 }
 
 @each $key, $value in $containers {

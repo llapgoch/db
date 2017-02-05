@@ -42,7 +42,8 @@ var $ = {
     sass          : require('gulp-sass'),
     autoPrefixer  : require('gulp-autoprefixer'),
     combineMq     : require('gulp-combine-mq'),
-    cssNano       : require('gulp-cssnano')
+    cssNano       : require('gulp-cssnano'),
+    sourceMaps    : require('gulp-sourcemaps')
 };
 
 /**
@@ -207,11 +208,13 @@ function js() {
 function css() {
     return gulp.src(root.src + '/' + tasks.css.src + '/**/*.' + tasks.css.extensions)
         .pipe($.clipEmptyFiles())
+        .pipe($.sourceMaps.init())
         .pipe(!$.util.env.production ? $.sass.sync().on('error', $.sass.logError) : $.util.noop())
         .pipe($.util.env.production ? $.sass.sync() : $.util.noop())
         .pipe($.autoPrefixer(tasks.css.plugins.autoPrefixer))
         .pipe($.util.env.production ? $.combineMq() : $.util.noop())
         .pipe($.util.env.production ? $.cssNano(tasks.css.plugins.cssNano) : $.util.noop())
+        .pipe($.sourceMaps.write())
         .pipe(gulp.dest(root.dest + '/' + tasks.css.dest + '/'));
 }
 

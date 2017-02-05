@@ -3,11 +3,13 @@
 // =============================================
 
 .logo {
+    font-family: $logo-font-family;
     display: inline-block;
     white-space: nowrap;
-    font-size: 5em;
+    font-size: 5rem;
     line-height: 1;
     text-decoration: none;
+    text-shadow: 0px 0px 10px color(neutral, black);
     
     &__b {
         margin-left: -0.4em;

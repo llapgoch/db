@@ -10,6 +10,7 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    border-radius: $border-radius;
 }
 
 label {
@@ -23,15 +24,18 @@ label {
 input,
 textarea,
 select[multiple=multiple] {
-    background-color: color(neutral, black);
+    @extend .u-fill-opaque-overlay-item;
     color: color(neutral, white);
-    border: 1px solid color(neutral, black);
+    border: none;
+    outline: 0;
     border-radius: $border-radius;
-    padding: spacing(xs) spacing(sm);
+    padding: 0.55em 1em;
     width: 100%;
+    padding: 0.16rem 1rem;
+    font-size: 0.7rem;
     
     &:focus {
-        border-color: color(neutral, black);
+        border-color: color(neutral, white);
         outline: none;
     }
 }
@@ -52,7 +56,6 @@ textarea {
 input[type="search"] {
     -webkit-appearance: none;
     box-sizing: border-box;
-    border-radius: 0;
 }
 
 input[type="checkbox"],
@@ -115,7 +118,7 @@ legend {
 // =============================================
 
 optgroup {
-    font-weight: $bold;
+    font-weight: $weight-bold;
 }
 
 

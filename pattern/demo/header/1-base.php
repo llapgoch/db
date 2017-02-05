@@ -2,8 +2,8 @@
 Title: Header
 */ ?>
 
-<header class="header u-fill-opaque-25">
-    <div class="u-container-lg">
+<header class="header u-fill-opaque-overlay u-container-md">
+    <div>
         
         <div class="header__body grid g-gutter-x g-stretch-last g-center">
             <div>
@@ -20,8 +20,8 @@ Title: Header
                 </div>
                 
                 <div class="grid g-gutter-x g-stretch-first u-hidden-xs header__main">
-                    <div>
-                        <ul class="nav nav--inline nav--space nav--primary u-fill-neutral-black">
+                    <div class="header__child">
+                        <ul class="nav nav--inline nav--space nav--primary">
                             <li><a href="#">About</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Portfolio</a></li>
@@ -29,27 +29,33 @@ Title: Header
                         </ul>
                     </div>
                     
-                    <div>
+                    <div class="header__child">
                         
-                        <div class="grid g-stretch-last">
+                        <div class="grid g-stretch-last g-gutter-x">
                             
                             <div>
-                                <ul class="nav nav--inline nav--space header__secondary-nav">
+                                <ul class="nav nav--inline nav--space-around header__secondary-nav">
                                     <li>
                                         <a href="#">
                                             <span class="u-visually-hidden">Twitter</span>
-                                            <?php printSvg('social', 'twitter'); ?>
+                                            <svg class="icon--header icon--twitter">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/img/vectors/social/symbol/sprite-symbol.svg#twitter"></use>
+                                            </svg>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
                                             <span class="u-visually-hidden">Github</span>
-                                            <?php printSvg('social', 'github'); ?>
+                                            <svg class="icon--header icon--github">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/img/vectors/social/symbol/sprite-symbol.svg#github"></use>
+                                            </svg>
                                         </a>
                                     </li>
                                     <li class="u-hidden-lg u-hidden-xl">
-                                        <a href="#" class="btn" data-cc-action="activate" data-cc-target="drawer-search">
-                                            <?php printSvg('general', 'search'); ?>
+                                        <a href="#" class="btn--inline" data-cc-action="activate" data-cc-target="drawer-search">
+                                            <svg class="icon--header icon--search">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/img/vectors/general/symbol/sprite-symbol.svg#search"></use>
+                                            </svg>
                                             <span class="u-visually-hidden">Search</span>
                                         </a>
                                     </li>
