@@ -60,6 +60,12 @@
     }
 }
 
+@mixin nav--space-around-inner {
+    &.nav--inline > * {
+        padding-left: spacing(lg) / 2;
+        padding-right: spacing(lg) / 2;
+    }
+}
 
 // =============================================
 // Nav Multi Level

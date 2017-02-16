@@ -34,7 +34,7 @@ Title: Header
                         <div class="grid g-stretch-last g-gutter-x">
                             
                             <div>
-                                <ul class="nav nav--inline nav--space-around header__secondary-nav">
+                                <ul class="nav nav--inline nav--space-around-inner header__secondary-nav">
                                     <li>
                                         <a href="#">
                                             <span class="u-visually-hidden">Twitter</span>
@@ -51,8 +51,8 @@ Title: Header
                                             </svg>
                                         </a>
                                     </li>
-                                    <li class="u-hidden-lg u-hidden-xl">
-                                        <a href="#" class="btn--inline" data-cc-action="activate" data-cc-target="drawer-search">
+                                    <li class="u-hidden-md u-hidden-lg u-hidden-xl">
+                                        <a href="#" class="btn--inline" data-cc-action="activate" data-cc-target="modal-search" data-cc-target="drawer-search">
                                             <svg class="icon--header icon--search">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/img/vectors/general/symbol/sprite-symbol.svg#search"></use>
                                             </svg>
@@ -61,7 +61,7 @@ Title: Header
                                     </li>
                                 </ul>
                             </div>
-                            <div class="u-hidden-xs u-hidden-sm u-hidden-md">
+                            <div class="u-hidden-xs u-hidden-sm">
                                 <form>
                                     <input type="search" placeholder="Search" class="search-input">
                                 </form>

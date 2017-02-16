@@ -127,3 +127,18 @@ Class: &lt;input&gt;
         <input id="file" type="file" placeholder="Enter Search Term">
     </div>
 </div>
+
+
+<div class="field-group field-group--scaffold">
+    <label class="field-group__label required">Text input Large</label>
+    <div class="field-group__field">
+        <input id="text" class="input--large" type="text" placeholder="Text Input">
+    </div>
+</div>
+
+<div class="field-group field-group--scaffold">
+    <label class="field-group__label required">Text input Large Inverse</label>
+    <div class="field-group__field">
+        <input id="text" class="input--large input--inverse" type="text" placeholder="Text Input">
+    </div>
+</div>

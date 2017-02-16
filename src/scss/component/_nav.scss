@@ -41,6 +41,9 @@
     @include nav--space-around;
 }
 
+.nav--space-around-inner{
+    @include nav--space-around-inner;
+}
 
 // =============================================
 // Nav Multi Level

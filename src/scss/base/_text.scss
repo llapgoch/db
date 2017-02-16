@@ -80,8 +80,9 @@ mark {
 
 a,
 .link {
-    color: color(neutral, black);
+    color: color(primary, action);
     touch-action: manipulation;
+    text-decoration: none;
 
     &:hover {
         color: color(neutral, dark);

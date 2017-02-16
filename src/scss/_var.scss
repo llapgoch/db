@@ -4,9 +4,9 @@
 
 $colors: (
 
-//    primary: (
-//        pink            : DeepPink
-//    ),
+    primary: (
+        action            : #00d0ff
+    ),
 //
 //    secondary: (
 //        purple          : RebeccaPurple
@@ -64,6 +64,7 @@ $serif-font-family      : "Gentium Basic",Georgia,Times,"Times New Roman",serif;
 $font-size              : 100%;
 $font-size-sm           : 0.75em;
 $font-size-lg           : 1.33em;
+$font-size-xl           : 2em;
 
 $weight-bold                   : 600;
 $weight-light                  : 100;

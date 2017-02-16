@@ -30,3 +30,16 @@ FOOTER TO DO
     <?php printPattern('component/modal/base'); ?>
 
     <?php printPattern('component/overlay/base'); ?>
+
+<div class="modal" id="modal" data-cc-cascade="overlay" data-cc-trigger-on="direct-only" data-cc-action="deactivate" data-cc-target="modal">
+    <div class="modal__dialog">
+
+        <div id="modal-search" data-cc-cascade="modal" data-cc-group="modal-tabs" class="u-toggle">
+            <div class="u-container-sm">
+                <div>
+                    <input type="search" class="input--large input--inverse input--emphasised h1" placeholder="E.g. Higgs Boson" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

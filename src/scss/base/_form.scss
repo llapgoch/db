@@ -164,3 +164,18 @@ abbr[title="Required"],
     border-color: color(contextual, error);
 }
 
+.input--inverse {
+    background-color: white !important;
+    color: color(neutral, darker) !important;
+    border: 2px solid color(neutral, darker);
+}
+
+.input--inverse:focus {
+    border: 2px solid color(neutral, darker) !important;
+}
+
+.input--emphasised{
+    border-color: color(primary, action);
+    box-shadow: 0px 0px 50px color(neutral, black);
+}
+
