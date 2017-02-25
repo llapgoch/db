@@ -19,6 +19,7 @@ jQuery.widget('llapgoch.sinewave', {
         clearOnUpdate: true,
         autoStart: true,
         gradient: false,
+        startCount: 0,
 
         updateMethod: function (a, angleInterval) {
             return Math.sin((angleInterval * (Math.PI / 180))) * a;
@@ -93,7 +94,7 @@ jQuery.widget('llapgoch.sinewave', {
         this.points = [];
         this.colours = [];
         this.canvas = canvas.get(0);
-
+        this.sineCount = this.options.startCount;
         this.canvas.width = this.options.stageSize;
         this.canvas.height = this.options.stageSize;
 

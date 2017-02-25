@@ -1,5 +1,5 @@
 ;(function($){
-    var FALLBACK_COLOR = "#d3d3d3"; //"#e85d00";
+    var FALLBACK_COLOR ="#e85d00";
     var diameter;
 
     $(document).on('ready.sinebanner', function(){
@@ -17,14 +17,15 @@
         $bannerWidgets.sinewave({
             circleDiameter: diameter,
             amount: Math.ceil(stageSize / 20) * (optimisedMode ? 0.25 : 1),
-            angleOffset: 0.1,
-            moveAmount: 0.004,
+            angleOffset: 0.01,
+            moveAmount: 0.0004,
             blur: optimisedMode ? 0 : 40,
             updateInterval: 60,
             stageSize: stageSize,
             alpha: optimisedMode ? 0.05 : 0.11,
             circleColor: FALLBACK_COLOR,
             gradient: true,
+            startCount: Math.floor(Math.random() * 360),
 
             updateMethod: function(a, angleInterval){
                 return Math.sin(Math.log(a * a) / Math.cos(a) * Math.E);
