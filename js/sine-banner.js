@@ -1,10 +1,10 @@
 ;(function($){
-    var FALLBACK_COLOR ="#e85d00";
+    var FALLBACK_COLOR = "#e85d00";
     var diameter;
 
     $(document).on('ready.sinebanner', function(){
         var $bannerWidgets = $('.banner-widget');
-        var stageSize = Math.max($(window).width(), $bannerWidgets.height()/2);
+        var stageSize = Math.max($(window).width(), $bannerWidgets.height()/1.75);
         var widgetItemSelector = '.banner-widget--under-header .banner-widget__item';
         // The CSS blur on the canvas element is far too slow on Firefox / other browsers
         var optimisedMode = isOptimisedMode();
@@ -18,8 +18,8 @@
             circleDiameter: diameter,
             amount: Math.ceil(stageSize / 20) * (optimisedMode ? 0.25 : 1),
             angleOffset: 0.01,
-            moveAmount: 0.0004,
-            blur: optimisedMode ? 0 : 40,
+            moveAmount: 0.0008,
+            blur: optimisedMode ? 0 : 80,
             updateInterval: 60,
             stageSize: stageSize,
             alpha: optimisedMode ? 0.05 : 0.11,
@@ -60,7 +60,7 @@
             },
             onSlideBefore: function($item){
                 var color = $item.data('sine-color') ? $item.data('sine-color') : FALLBACK_COLOR;
-             //   $(".banner-widget").data('llapgochSinewave').option("circleColor", color);
+                $(".banner-widget").data('llapgochSinewave').option("circleColor", color);
             }
         });
     });
