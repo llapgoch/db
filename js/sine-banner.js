@@ -18,8 +18,8 @@
             circleDiameter: diameter,
             amount: Math.ceil(stageSize / 20) * (optimisedMode ? 0.25 : 1),
             angleOffset: 0.01,
-            moveAmount: 0.0008,
-            blur: optimisedMode ? 0 : 80,
+            moveAmount: 0.008,
+            blur: optimisedMode ? 0 : 40,
             updateInterval: 60,
             stageSize: stageSize,
             alpha: optimisedMode ? 0.05 : 0.11,
@@ -55,6 +55,7 @@
         $('.banner-widget__items').bxSlider({
             auto: true,
             pause: 10000,
+            mode: "fade",
             onSliderLoad: function(){
                 updateBannerItems();
             },
