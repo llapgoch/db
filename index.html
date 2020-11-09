@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>TEST</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css?family=Arimo:400,400i,700|Montserrat" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -11,69 +12,113 @@
     <script src="js/jquery.llapgoch.sinepath.js"></script>
     <script src="js/jquery.bxslider.min.js"></script>
     <script src="js/sine-banner.js"></script>
+    <script src="build/three.min.js"></script>
 </head>
-<body>
-<header class="main-header container">
-    <div class="main-navigation">
-        <div class="main-logo">
-            <span class="letter">d</span>
-            <span class="letter">b</span>
-        </div>
-        <ul class="nav-primary">
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Playground</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
 
-        <div class="nav-secondary">
-            <ul class="icon-bar">
-                <li class="icon-bar--item">
-                    <a href="#" class="icon-bar--link icon icon--no-content twitter-icon"><span>Twitter</span></a>
-                </li>
-                <li class="icon-bar--item">
-                    <a href="#" class="icon-bar--link icon icon--no-content github-icon"><span>Twitter</span></a>
-                </li>
-            </ul>
-            <div class="search">
-                <form>
-                    <input type="search" placeholder="Search" class="search-input" />
-                </form>
+<body>
+    <header class="main-header">
+        <div class="top-bar"></div>
+        <div class="eye-right"></div>
+        <div class="main-navigation">
+            <div class="main-logo">
+                <img src="images/LogoRed.svg" height="80px" alt="Scum Online" />
+
             </div>
+            <ul class="nav-primary">
+                <li><a href="#">Racists</a></li>
+                <li><a href="#">Page 3.5</a></li>
+                <li><a href="#">Lies</a></li>
+            </ul>
+
+
+
         </div>
+        <div class="header-canvas"></div>
+    </header>
+
+    <div class="banner-widget banner-widget--under-header">
 
     </div>
-</header>
 
-<div class="banner-widget banner-widget--under-header">
-    <ul class="banner-widget__items">
-        <li class="banner-widget__item">
-            <div class="banner-widget__contents">
-                <img src="images/magento-white.svg" class="banner-widget__image" />
-                <h1 class="banner-widget__title">I'm a Certified Magento Developer</h1>
-                <p class="banner-content">from Staffordshire in the United Kingdom</p>
-            </div>
-        </li>
+    <div class="article">
+        <h1>Yesterday's Headlines, Today.</h1>
 
-        <li class="banner-widget__item" data-sine-color="#01ab31">
-            <div class="banner-widget__contents">
-                <img src="images/telescope1.svg" class="banner-widget__image" />
-                <h1 class="banner-widget__title">I'm an amateur astronomer</h1>
-                <p class="banner-content">from Earth in the Milky Way</p>
-            </div>
-        </li>
+    </div>
+
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        renderer.domElement.setAttribute('class', 'eye-anim');
+        renderer.setClearColor(0x000000, 0);
+
+        var light = new THREE.DirectionalLight(0xffffff);
+        light.position.set(0, 1000, -200).normalize();
+        
+        scene.add(light);
 
 
-        <!--<li class="banner-widget__item" data-sine-color="#cccccc">-->
-            <!--<div class="banner-widget__contents">-->
-                <!--<img src="images/magento-white.svg" class="banner-widget__image" />-->
-                <!--<h1 class="banner-widget__title">Banner 3</h1>-->
-                <!--<p class="banner-content">I'm a Magento certified developer from Staffordshire in the UK.</p>-->
-            <!--</div>-->
-        <!--</li>-->
+        var geometry = new THREE.SphereGeometry(40, 40, 40);
 
-    </ul>
-</div>
+        var texture = new THREE.TextureLoader().load("images/textures/eye-interpolated.jpg");
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(1, 1);
+
+        var material = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.375, shininess: 0 , metalness: 0.003});
+        material.bumpMap = new THREE.TextureLoader().load('images/textures/eye-bumpmap.jpg');
+
+
+
+        // set the "color space" of the texture
+        texture.encoding = THREE.sRGBEncoding;
+
+        // reduce blurring at glancing angles
+        texture.anisotropy = 16;
+
+
+
+        var sphere = new THREE.Mesh(geometry, material);
+
+        scene.add(sphere);
+
+        camera.position.z = 100;
+        sphere.position.y = 70;
+        
+        var update = function () {
+            sphere.rotation.y += 0.002;
+            sphere.rotation.x -= 0.001;
+            sphere.rotation.z += 0.00009;
+
+            // light.position.x += 0.005;
+            // light.position.y -= 0.005;
+            light.position.z += 0.005;
+
+            sphere.position.z += 0.002;
+            sphere.position.y -= 0.02;
+        }
+
+        var render = function () {
+            renderer.render(scene, camera);
+        }
+
+        // Update, render, repeat
+        var gameLoop = function () {
+            setTimeout(function () {
+                requestAnimationFrame(gameLoop);
+                update();
+                render();
+            }, 30);
+        }
+
+        render();
+
+        // gameLoop();
+    </script>
 
 
 </body>
+
 </html>

@@ -129,11 +129,6 @@ jQuery.widget('llapgoch.sinewave', {
         var currentParts = this._hexToRGB(this.options.circleColor);
         var self = this;
 
-        console.log(this.options.circleColor);
-        console.log(currentParts);
-
-        console.log(self._numberToHex(currentParts.r));
-
         if(!colorParts || !currentParts){
             throw 'Color fader not passed HEX color';
         }
@@ -145,8 +140,6 @@ jQuery.widget('llapgoch.sinewave', {
             'g': (colorParts.g - currentParts.g) / this.options.colorUpdateSteps,
             'b': (colorParts.b - currentParts.b) / this.options.colorUpdateSteps
         }
-
-
 
         this.colorUpdateId = window.setInterval(function(){
             currentParts.r += stepData.r;
@@ -292,7 +285,7 @@ jQuery.widget('llapgoch.sinewave', {
         console.log(hex);
 
         var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-
+        
         if(result){
             var rgb = {
                 r: parseInt(result[1], 16),
@@ -320,7 +313,8 @@ jQuery.widget('llapgoch.sinewave', {
         if (this.options.gradient){
             var color = this._hexToRGB(options.color);
 
-            if (!color || !color.r) {
+            if (!color || color.r === null) {
+                console.log(color);debugger;
                 throw "No valid HEX color provided";
                 return;
             }
